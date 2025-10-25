@@ -84,7 +84,7 @@ if file is not None:
     st.image(img, width=350, caption="Uploaded Image")
 
     with st.spinner("Extracting features..."):
-        feature = extract_function(model, saved_path)
+        feature = extract_function(model, img)
     st.success("Features extracted!")
 
     with st.spinner("Finding similar products..."):
