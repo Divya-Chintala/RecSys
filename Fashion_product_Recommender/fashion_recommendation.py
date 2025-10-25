@@ -116,6 +116,7 @@ if file is not None:
         except:
             caption = f"Recommendation {i+1}"
         
+        st.write(mapped_link)
         if mapped_link:  # Only show if link exists
             with col:
                 st.image(mapped_link, caption=caption)
