@@ -101,7 +101,7 @@ if file is not None:
     for i, col in enumerate(cols):
         idx = index[0][i]
         file_path = filenames[idx]
-        file_name = os.path.basename(file_path) 
+        file_name = file_path.split("\\")[-1]
         st.write(file_name)
         
         mapped_link = mapping_dict.get(file_name)
