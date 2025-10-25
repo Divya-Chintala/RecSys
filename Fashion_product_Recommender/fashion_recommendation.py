@@ -105,7 +105,6 @@ if file is not None:
         except:
             caption = f"Recommendation {i+1}"
 
-        with col:
-            st.image(file_path, caption=caption)
+       
 
     st.success("Done! Explore the recommendations above.")
