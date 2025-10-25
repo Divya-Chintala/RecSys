@@ -1,0 +1,2 @@
+Fashion_product_Recommender/embiddings.pkl filter=lfs diff=lfs merge=lfs -text
+Fashion_product_Recommender/filenames.pkl filter=lfs diff=lfs merge=lfs -text
