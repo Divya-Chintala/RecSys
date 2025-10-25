@@ -102,8 +102,8 @@ if file is not None:
         idx = index[0][i]
         file_path = filenames[idx]
         file_name = os.path.basename(file_path) 
-
-
+        st.write(file_name)
+        
         mapped_link = mapping_dict.get(file_name)
         
         
