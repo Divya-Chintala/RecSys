@@ -101,7 +101,7 @@ if file is not None:
     for i, col in enumerate(cols):
         idx = index[0][i]
         file_path = filenames[idx]
-        file_name = file_path.split("/")[-1]  
+        file_name = os.path.basename(file_path) 
 
 
         mapped_link = mapping_dict.get(file_name)
@@ -115,8 +115,14 @@ if file is not None:
             caption = data_json['data'].get('productDisplayName', f"Item {i+1}")
         except:
             caption = f"Recommendation {i+1}"
+        
+        if mapped_link:  # Only show if link exists
+            with col:
+                st.image(mapped_link, caption=caption)
+        else:
+            with col:
+                st.write("Image not found")
 
-        with col:
-            st.image(mapped_link, caption=caption)
+       
 
     st.success("Done! Explore the recommendations above.")
