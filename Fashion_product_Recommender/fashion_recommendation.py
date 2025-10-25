@@ -97,6 +97,9 @@ if file is not None:
     for i, col in enumerate(cols):
         idx = index[0][i]
         file_path = filenames[idx]
+        
+        st.write("Sample filenames from pickle:", filenames[:20])
+
         product_id = os.path.splitext(os.path.basename(file_path))[0]
 
         try:
