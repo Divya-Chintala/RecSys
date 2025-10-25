@@ -102,7 +102,7 @@ if file is not None:
         idx = index[0][i]
         file_path = filenames[idx]
         file_name = file_path.split("\\")[-1]
-        st.write(file_name)
+        #st.write(file_name)
         
         mapped_link = mapping_dict.get(file_name)
         
@@ -116,7 +116,7 @@ if file is not None:
         except:
             caption = f"Recommendation {i+1}"
         
-        st.write(mapped_link)
+        #st.write(mapped_link)
         if mapped_link:  # Only show if link exists
             with col:
                 st.image(mapped_link, caption=caption)
