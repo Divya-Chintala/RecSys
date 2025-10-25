@@ -99,6 +99,6 @@ if file is not None:
                 caption = f"Recommendation {i+1}"
 
             with col:
-                st.image(file_path, caption=caption, use_container_width =True)
+                st.image(file_path, caption=caption)
 
         st.success("Done! Explore the recommendations above.")
