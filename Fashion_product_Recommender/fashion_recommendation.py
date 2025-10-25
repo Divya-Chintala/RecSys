@@ -10,6 +10,7 @@ from PIL import Image
 import pickle
 from sklearn.neighbors import NearestNeighbors
 import json
+import pandas as pd
 
 import os, pickle
 from pathlib import Path
@@ -17,10 +18,13 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent  
 emb_path = BASE_DIR / "embiddings.pkl"
 fn_path  = BASE_DIR / "filenames.pkl"
+images_csv = BASE_DIR / "images.csv"
 
 
 features_list = np.array(pickle.load(open(emb_path,'rb')))
 filenames = pickle.load(open(fn_path,'rb'))
+mapping_df = pd.read_excel(images_csv)
+mapping_dict = dict(zip(mapping_df["filename"], mapping_df["link"]))
 
 
 def fetching_json(index):
@@ -97,6 +101,10 @@ if file is not None:
     for i, col in enumerate(cols):
         idx = index[0][i]
         file_path = filenames[idx]
+        file_name = file_path.split("/")[-1]  
+
+
+        mapped_link = mapping_dict.get(file_name)
         
         st.write("Sample filenames from pickle:", filenames[:20])
 
@@ -109,6 +117,6 @@ if file is not None:
             caption = f"Recommendation {i+1}"
 
         with col:
-            st.image(file_path, caption=caption)
+            st.image(mapped_link, caption=caption)
 
     st.success("Done! Explore the recommendations above.")
