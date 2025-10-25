@@ -11,9 +11,16 @@ import pickle
 from sklearn.neighbors import NearestNeighbors
 import json
 
+import os, pickle
+from pathlib import Path
 
-features_list = np.array(pickle.load(open('embiddings.pkl','rb')))
-filenames = pickle.load(open('filenames.pkl','rb'))
+BASE_DIR = Path(__file__).resolve().parent  
+emb_path = BASE_DIR / "embiddings.pkl"
+fn_path  = BASE_DIR / "filenames.pkl"
+
+
+features_list = np.array(pickle.load(open(emb_path,'rb')))
+filenames = pickle.load(open(fn_path,'rb'))
 
 
 def fetching_json(index):
