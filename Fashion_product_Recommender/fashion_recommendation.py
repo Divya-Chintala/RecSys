@@ -45,8 +45,8 @@ model = ResNet50(include_top = False, weights='imagenet', input_shape=(224,224,3
 model.trainable = False
 model = tensorflow.keras.Sequential([model, GlobalMaxPooling2D()])
 
-def extract_function(model, image_path):
-    imag = image.load_img(image_path, target_size=(224, 224))
+def extract_function(model, img):
+    imag = img.convert("RGB").resize((224, 224))
     imag_array = image.img_to_array(imag)
     imag_expand = np.expand_dims(imag_array,axis=0)
     processed_image = preprocess_input(imag_expand)
