@@ -106,7 +106,7 @@ if file is not None:
 
         mapped_link = mapping_dict.get(file_name)
         
-        st.write("Sample filenames from pickle:", filenames[:20])
+        
 
         product_id = os.path.splitext(os.path.basename(file_path))[0]
 
