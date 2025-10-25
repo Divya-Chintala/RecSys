@@ -77,35 +77,35 @@ file = st.sidebar.file_uploader("Upload an image", type=['jpg','jpeg','png'])
 
 if file is not None:
     st.write("### Successfully Uploaded Image")
-    saved_path = save_file(file)
+    #saved_path = save_file(file)
 
-    if saved_path:
-        img = Image.open(file)
-        st.image(img, width=350, caption="Uploaded Image")
+    
+    img = Image.open(file)
+    st.image(img, width=350, caption="Uploaded Image")
 
-        with st.spinner("Extracting features..."):
-            feature = extract_function(model, saved_path)
-        st.success("Features extracted!")
+    with st.spinner("Extracting features..."):
+        feature = extract_function(model, saved_path)
+    st.success("Features extracted!")
 
-        with st.spinner("Finding similar products..."):
-            index = recommend(features_list, feature)
-        st.success("Recommendations ready!")
+    with st.spinner("Finding similar products..."):
+        index = recommend(features_list, feature)
+    st.success("Recommendations ready!")
 
-        st.markdown("##Top Recommendations")
-        cols = st.columns(5)
+    st.markdown("##Top Recommendations")
+    cols = st.columns(5)
 
-        for i, col in enumerate(cols):
-            idx = index[0][i]
-            file_path = filenames[idx]
-            product_id = os.path.splitext(os.path.basename(file_path))[0]
+    for i, col in enumerate(cols):
+        idx = index[0][i]
+        file_path = filenames[idx]
+        product_id = os.path.splitext(os.path.basename(file_path))[0]
 
-            try:
-                data_json = fetching_json(product_id)
-                caption = data_json['data'].get('productDisplayName', f"Item {i+1}")
-            except:
-                caption = f"Recommendation {i+1}"
+        try:
+            data_json = fetching_json(product_id)
+            caption = data_json['data'].get('productDisplayName', f"Item {i+1}")
+        except:
+            caption = f"Recommendation {i+1}"
 
-            with col:
-                st.image(file_path, caption=caption)
+        with col:
+            st.image(file_path, caption=caption)
 
-        st.success("Done! Explore the recommendations above.")
+    st.success("Done! Explore the recommendations above.")
