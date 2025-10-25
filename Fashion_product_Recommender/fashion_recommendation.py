@@ -23,7 +23,7 @@ images_csv = BASE_DIR / "images.csv"
 
 features_list = np.array(pickle.load(open(emb_path,'rb')))
 filenames = pickle.load(open(fn_path,'rb'))
-mapping_df = pd.read_excel(images_csv)
+mapping_df = pd.read_csv(images_csv)
 mapping_dict = dict(zip(mapping_df["filename"], mapping_df["link"]))
 
 
